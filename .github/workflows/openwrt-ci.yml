@@ -103,7 +103,7 @@ jobs:
 
           # 编译x64固件:
           cat >> .config <<EOF
-          CONFIG_TARGET_x86=y
+          CONFIG_TARGET_=y
           CONFIG_TARGET_x86_64=y
           CONFIG_TARGET_x86_64_Generic=y
           EOF
@@ -204,10 +204,10 @@ jobs:
           # ========================固件定制部分结束========================
           # 
 
+          make menuconfig
           sed -i 's/^[ \t]*//g' ./.config
           make defconfig
-          make menuconfig
-
+          
       - name: Download package source code
         run: |
           make download -j8
